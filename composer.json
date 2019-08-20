@@ -1,0 +1,21 @@
+{
+    "name": "dingq/plugins-tonglian",
+    "description": "ThinkCMF 同联后台授权登录 plugin",
+    "type": "cmf-plugin",
+    "license": "apache2.0",
+    "authors": [
+        {
+            "name": "DQ",
+            "email": "237661791@qq.com"
+        }
+    ],
+    "require": {
+        "php-curl-class/php-curl-class": "8.4.*"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://mirrors.aliyun.com/composer/"
+        }
+    }
+}
