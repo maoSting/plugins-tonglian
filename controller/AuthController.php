@@ -44,11 +44,21 @@ class AuthController extends PluginBaseController {
         // 判断管理员，是否注册
         $userName = $prefix . $data['phone'];
 
-        $exist = Db::name('user')->where('user_login', $userName)->where('user_status', 1)->where('user_type', 1)->find();
+        $exist = Db::name('user')->where('user_login', $userName)->where('user_type', 1)->find();
         if (empty($exist)) {
             // 注册用户
             $userM = new UserModel();
             $exist = $userM->register($userName, $role);
+        } else {
+            if (empty($exist['user_status'])) {
+                // 禁止登录
+                $this->error('该用户已被禁止登陆');
+                return false;
+            }else if($exist['user_status'] == 2){
+                // 未验证
+                $this->error('该用户未验证，无法登录');
+                return false;
+            }
         }
         /**
          * 写session
